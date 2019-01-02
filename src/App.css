@@ -1,32 +1,67 @@
-.App {
-  text-align: center;
+.field {
+  display: grid;
+  grid-template-areas: "opponentHand opponentHand opponentHand" "redTableau blackTableau deckTableau" "yourHand yourHand yourHand";
+  grid-template-rows: 100px 1fr 120px;
+  grid-template-columns: 35% 35% 1fr;
+  grid-row-gap: 5px;
+  grid-column-gap: 5px;
+  height: 100vh;
+  margin: 0;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
+.opponentHand, .redTableau, .blackTableau, .deckTableau, .yourHand {
   background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 1em;
+}
+
+.opponentHand {
+  grid-area: opponentHand;
+}
+
+.redTableau {
+  grid-area: redTableau;
+}
+
+.blackTableau {
+  grid-area: blackTableau;
+}
+
+.deckTableau {
+  grid-area: deckTableau;
+}
+
+.yourHand {
+  grid-area: yourHand;
+}
+
+.opponentHand,.yourHand,.tableau {
+  display: inline-flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.opponentHand {
+  align-items: flex-end;
+}
+
+.card {
+  height: 256px;
+  width: 128px;
+  border-radius: 6px;
   color: white;
+    border: 1px solid yellow;
+    word-wrap: break-word;
+}
+.card.deck {
+  border: 1px solid white;
+}
+.card.empty {
+  border: 3px dashed white;
 }
 
-.App-link {
-  color: #61dafb;
+.card.empty.drawn {
+  border: 1px dashed white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card.chosen {
+    margin-right: 40px;
 }
