@@ -1,68 +1,65 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- [ ] Full (Game) State
+```javascript
+{
+  current_player: player_id,
+  players: [{player_id, hand:[card{5}], secret:card, drawn_card:card, swap_card:card, score}{2,3}]
+  deck: [cards],
+  discard: [cards],
+  lane: [{suit, cards:[card{3}]]]
+}
+```
+- [ ] Partial (Player) State
+```javascript
+{
+  current_player: player_id,
+  my_player: {player_id, hand:[card{5}], secret:card, drawn_card:card, swap_card:card, score}
+  players: [{player_id, hand:[bool{5}], secret:bool, drawn_card:bool, swap_card:bool, score}{2,3}]
+  deck: int,
+  discard: int,
+  lane: [{suit, cards:[{3}]}{2,3}]
+}
+```
+- [ ] NodeJS Server POC
+- [ ] Client-Side Async Action Creator
 
-## Available Scripts
+**Game Start**
+* Initalize State
 
-In the project directory, you can run:
+**Round Start**
+* Shuffle Deck
+* Deal 5 cards to each player
+* Deal drawn card to each player
+* Player 1 chooses a secret
+* Player 2 chooses a secret
 
-### `npm start`
+**Turn**
+* Receive Actions
+  * draw then play
+    * draw action: card, player_id
+    * play action: card, player_id, lane_idx
+  * draw then discard
+    * draw action: card, player_id
+    * play action: card, player_id
+  * swap with lane from hand
+    * swap_with_lane action: player_id, player_card, lane_idx, lane_card
+  * swap with secret from hand
+    * swap_with_secret action: player_id, player_card
+* Receive Turn Over Action
+* Determine if Round Over
+* Next Turn
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+**Round End**
+* Calculate winning lane
+* Calculate losing lane+highest discard
+* Determine winner
+* Determine scores
+* Add scores running score
+* Determine if Game Over
+  * determine overall winner
+  
+**Concerns to play-test**
+* Should we allow secret swap?
+  * If yes, when can they play a secret?
+  * What happens if they don't have a horse in the game anymore?
+* How is game end triggered?
+* How is overall winner calculated?
