@@ -55,6 +55,7 @@
 * Calculate losing lane+highest discard
 * Determine winner
 * Determine scores
+  * loser(s) take the value of their secret card
 * Add scores running score
 * Determine if Game Over
   * determine overall winner
