@@ -1,8 +1,9 @@
 - [ ] Full (Game) State
 ```javascript
 {
+  current_phase: <game_start,round_start,round_turn,round_end,game_end>,
   current_player: player_id,
-  players: [{player_id, hand:[card{5}], secret:card, drawn_card:card, swap_card:card, score}{2,3}]
+  players: [{player_id, hand:[card{5}], secret:card, drawn_card:card, swap_card:card, score}{2,3}],
   deck: [cards],
   discard: [cards],
   lane: [{suit, cards:[card{3}]]]
@@ -11,9 +12,10 @@
 - [ ] Partial (Player) State
 ```javascript
 {
+  current_phase: <game_start,round_start,round_turn,round_end,game_end>,
   current_player: player_id,
-  my_player: {player_id, hand:[card{5}], secret:card, drawn_card:card, swap_card:card, score}
-  players: [{player_id, hand:[bool{5}], secret:bool, drawn_card:bool, swap_card:bool, score}{2,3}]
+  my_player: {player_id, hand:[card{5}], secret:card, drawn_card:card, swap_card:card, score},
+  players: [{player_id, hand:[bool{5}], secret:bool, drawn_card:bool, swap_card:bool, score}{2,3}],
   deck: int,
   discard: int,
   lane: [{suit, cards:[{3}]}{2,3}]
@@ -32,7 +34,7 @@
 * Player 1 chooses a secret
 * Player 2 chooses a secret
 
-**Turn**
+**Round Turn**
 * Receive Actions
   * draw then play
     * draw action: card, player_id
