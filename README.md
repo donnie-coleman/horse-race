@@ -6,7 +6,7 @@
   players: [{player_id, hand:[card{5}], secret:card, drawn_card:card, swap_card:card, score}{2,3}],
   deck: [cards],
   discard: [cards],
-  lane: [{suit, cards:[card{3}]}]
+  lane: [{suit, cards:[{3}]}{2,3}]
 }
 ```
 - [ ] Partial (Player) State
