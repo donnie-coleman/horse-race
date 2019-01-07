@@ -69,7 +69,7 @@
 * Determine scores
   * loser(s) take the value of their secret card
 * Add scores to running scores
-* Determine if Game Over
+* Determine if Game End
   * No: Go To Round Start phase
   * Yes: Go To Game End phase
   
