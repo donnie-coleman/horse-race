@@ -4,8 +4,8 @@
   current_phase: <game_start,round_start,round_turn,round_end,game_end>,
   current_player: player_id,
   players: [{player_id, hand:[card{5}], secret:card, drawn_card:card, swap_card:card, score}{2,3}],
-  deck: [cards],
-  discard: [cards],
+  deck: [card{0,52}],
+  discard: [card{0,52}],
   lane: [{suit, cards:[{3}]}{2,3}]
 }
 ```
@@ -17,7 +17,7 @@
   my_player: {player_id, hand:[card{5}], secret:card, drawn_card:card, swap_card:card, score},
   players: [{player_id, hand:[bool{5}], secret:bool, drawn_card:bool, swap_card:bool, score}{2,3}],
   deck: int,
-  discard: int,
+  discard: {top_card:card, size:int},
   lane: [{suit, cards:[{3}]}{2,3}]
 }
 ```
