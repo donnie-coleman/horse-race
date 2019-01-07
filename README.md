@@ -1,6 +1,7 @@
 - [ ] Full (Game) State
 ```javascript
 {
+  previous_winner: player_id,
   current_phase: <game_start,round_start,round_turn,round_end,game_end>,
   current_player: player_id,
   players: [{player_id, hand:[card{5}], secret:card, drawn_card:card, swap_card:card, score}{2,3}],
@@ -25,14 +26,24 @@
 - [ ] Client-Side Async Action Creator
 
 **Game Start**
-* Initalize State
+* Initalize Game State
+  * player scores = zero
+  * previous winner = null
 
 **Round Start**
-* Shuffle Deck
-* Deal 5 cards to each player
-* Deal drawn card to each player
+* Initialize Round State
+  * Lanes Empty
+  * Discard Empty
+  * Shuffle Deck
+  * Deal 5 cards to each player
+  * Deal drawn card to each player
+  * Secret Card Empty
+  * current_player = previous winner or player 1
+* Send State
 * Player 1 chooses a secret
+  * play_secret action: card, player_id
 * Player 2 chooses a secret
+  * play_secret action: card, player_id
 
 **Round Turn**
 * Receive Actions
@@ -46,19 +57,24 @@
     * swap_with_lane action: player_id, player_card, lane_idx, lane_card
   * swap with secret from hand
     * swap_with_secret action: player_id, player_card
-* Receive Turn Over Action
-* Determine if Round Over
-* Next Turn
+* Determine if Round End
+  * No: next player's turn
+  * Yes: go to Round End phase
 
 **Round End**
 * Calculate winning lane
 * Calculate losing lane+highest discard
 * Determine winner
+  * set Previous Winner in state
 * Determine scores
   * loser(s) take the value of their secret card
-* Add scores running score
+* Add scores to running scores
 * Determine if Game Over
-  * determine overall winner
+  * No: Go To Round Start phase
+  * Yes: Go To Game End phase
+  
+**Game End**
+  * Determine overall winner
   
 **Concerns to play-test**
 * Should we allow secret swap?
