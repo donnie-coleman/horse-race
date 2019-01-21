@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
 import './App.css';
 import {connect} from 'react-redux';
-import {shuffle, deal, draw} from './actions/deckActions';
+import {init, draw} from './actions/deckActions';
 import {storeSecret} from './actions/playersActions';
 
 class App extends Component {
     componentDidMount() {
-        this.props.shuffle(this.props.deck);
-        this.props.deal(0);
-        this.props.deal(1);
+        this.props.init();
     }
 
     render() {
@@ -64,8 +62,7 @@ class App extends Component {
 const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({
-    shuffle : array => dispatch(shuffle(array)), // dispatching a function
-    deal: player => dispatch(deal(player)),
+    init: player => dispatch(init(player)),
     draw: player => dispatch(draw(player)),
     storeSecret: (player, secret) => dispatch(storeSecret(player, secret))
 });

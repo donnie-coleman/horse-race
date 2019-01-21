@@ -7,7 +7,7 @@
   players: [{player_id, hand:[card{5}], secret:card, drawn_card:card, swap_card:card, score}{2,3}],
   deck: [card{0,52}],
   discard: [card{0,52}],
-  lane: [{suit, cards:[{3}]}{2,3}]
+  lanes: [{suit, cards:[{3}]}{2,3}]
 }
 ```
 - [ ] Partial (Player) State
@@ -19,7 +19,7 @@
   players: [{player_id, hand:[bool{5}], secret:bool, drawn_card:bool, swap_card:bool, score}{2,3}],
   deck: int,
   discard: {top_card:card, size:int},
-  lane: [{suit, cards:[{3}]}{2,3}]
+  lanes: [{suit, cards:[{3}]}{2,3}]
 }
 ```
 - [ ] NodeJS Server POC
@@ -35,10 +35,10 @@
   * Lanes Empty
   * Discard Empty
   * Shuffle Deck
-  * Deal 5 cards to each player
-  * Deal drawn card to each player
   * Secret Card Empty
   * current_player = previous winner or player 1
+  * Deal 5 cards to each player
+  * Deal drawn card to each player
 * Send State
 * Player 1 chooses a secret
   * play_secret action: card, player_id
@@ -72,10 +72,10 @@
 * Determine if Game End
   * No: Go To Round Start phase
   * Yes: Go To Game End phase
-  
+
 **Game End**
   * Determine overall winner
-  
+
 **Concerns to play-test**
 * Should we allow secret swap?
   * If yes, when can they play a secret?
