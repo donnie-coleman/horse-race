@@ -15,8 +15,8 @@
 {
   current_phase: <game_start,round_start,round_turn,round_end,game_end>,
   current_player: player_id,
-  my_player: {player_id, hand:[card{5}], secret:card, drawn_card:card, swap_card:card, score},
-  players: [{player_id, hand:[bool{5}], secret:bool, drawn_card:bool, swap_card:bool, score}{2,3}],
+  my_player: {player_name, player_id, hand:[card{5}], secret:card, drawn_card:card, swap_card:card, score},
+  players: [{player_name, player_id, hand:[bool{5}], secret:bool, drawn_card:bool, swap_card:bool, score}{2,3}],
   deck: int,
   discard: {top_card:card, size:int},
   lane: [{suit, cards:[{3}]}{2,3}]
@@ -27,9 +27,14 @@
 
 **Game Start**
 * Initalize Game State
-  * player scores = zero
+  * push new player 1
+  * push new player 2
   * previous winner = null
-
+  * current_player = null
+* Waiting for Player 1 State
+  * player 1: name, id
+* Waiting for Player 2 State
+  * player 2: name, id 
 **Round Start**
 * Initialize Round State
   * Lanes Empty
