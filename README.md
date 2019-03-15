@@ -34,7 +34,8 @@
 * Waiting for Player 1 State
   * player 1: name, id
 * Waiting for Player 2 State
-  * player 2: name, id 
+  * player 2: name, id  
+
 **Round Start**
 * Initialize Round State
   * Lanes Empty
